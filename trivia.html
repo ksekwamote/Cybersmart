@@ -158,7 +158,7 @@ button::before {
 
 <div align="center">
 	<nav>
-		<a href="./index">Home</a> |
+		<a href="./">Home</a> |
 		<a href="./trivia">Trivia</a> |
 		<a href="./passwordGenerator">Password Generator</a> |
 		<a href="./checklist">Risk Assesment</a> 
@@ -220,12 +220,15 @@ button::before {
 
 <!-- Linking jQuery CDN -->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-
+<script type="text/javascript">
+	var sound = document.getElementById("sound");
+	sound.volume= 0.4;
+</script>
 <!-- Linking my own JAVASCRIPT -->
 <script type="text/javascript" src="assets/javascript/app.js"></script>
 	
 	<div align="center">
-    <audio src="./assets/sounds/drama.mp3" controls loop autoplay > 
+    <audio id="sound" src="./assets/sounds/drama.mp3" controls loop autoplay > 
     	<div>
 </body>
 </html>
