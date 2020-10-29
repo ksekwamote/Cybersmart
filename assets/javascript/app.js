@@ -134,7 +134,7 @@ $(document).ready(function(){
 					  ],
 			answer: 3,
 			image: "assets/images/Q9_Food.gif",
-			answerText: "In the show's pilot, Liz is attempting to buy a hot dog before work. A fellow commuter tries to jump the line, then Liz buys $150 worth of hot dogs to make a point."
+			answerText: ""
 		},		
 
 		{	question: "Which is the best answer for which people in a business should be responsible for cybersecurity??",
