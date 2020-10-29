@@ -1,0 +1,224 @@
+<!-- Homework Assingment: JavaScript Assignment 2 Option One: Basic Quiz (Timed Form) -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	
+	<!-- Linking Normalize.css -->
+	<link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
+	 <link rel='shortcut icon' type='image/x-icon' href='assets/assets/favicon.ico' />
+
+	<!-- Setting the Viewport -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- BOOTSTRAP 3: Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	
+	<!-- Linking my own CSS -->
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+	<title>CYBERSMART TRIVIA </title>
+	<style>
+      @import url('https://fonts.googleapis.com/css2?family=Aladin&family=Sriracha&display=swap');
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:200,900');
+
+:root {
+  --text-color: hsla(210, 50%, 85%, 1);
+  --shadow-color: hsla(210, 40%, 52%, .4);
+  --btn-color: hsl(210, 80%, 42%);
+  --bg-color: #141218;
+}
+
+
+button {
+  position:relative;
+  padding: 10px 20px;  
+  border: none;
+  background: none;
+  cursor: pointer;
+  
+  font-family: "Source Code Pro";
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 30px;  
+  color: var(--text-color);
+  
+  background-color: var(--btn-color);
+  box-shadow: var(--shadow-color) 2px 2px 22px;
+  border-radius: 4px; 
+  z-index: 0;  
+  overflow: hidden;   
+}
+
+button:focus {
+  outline-color: transparent;
+  box-shadow: var(--btn-color) 2px 2px 22px;
+}
+
+.right::after, button::after {
+  content: var(--content);
+  display: block;
+  position: absolute;
+  white-space: nowrap;
+  padding: 40px 40px;
+  pointer-events:none;
+}
+
+button::after{
+  font-weight: 200;
+  top: -30px;
+  left: -20px;
+} 
+
+.right, .left {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+}
+.right {
+  left: 66%;
+}
+.left {
+  right: 66%;
+}
+.right::after {
+  top: -30px;
+  left: calc(-66% - 20px);
+  
+  background-color: var(--bg-color);
+  color:transparent;
+  transition: transform .4s ease-out;
+  transform: translate(0, -90%) rotate(0deg)
+}
+
+button:hover .right::after {
+  transform: translate(0, -47%) rotate(0deg)
+}
+
+button .right:hover::after {
+  transform: translate(0, -50%) rotate(-7deg)
+}
+
+button .left:hover ~ .right::after {
+  transform: translate(0, -50%) rotate(7deg)
+}
+
+/* bubbles */
+button::before {
+  content: '';
+  pointer-events: none;
+  opacity: .6;
+  background:
+    radial-gradient(circle at 20% 35%,  transparent 0,  transparent 2px, var(--text-color) 3px, var(--text-color) 4px, transparent 4px),
+    radial-gradient(circle at 75% 44%, transparent 0,  transparent 2px, var(--text-color) 3px, var(--text-color) 4px, transparent 4px),
+    radial-gradient(circle at 46% 52%, transparent 0, transparent 4px, var(--text-color) 5px, var(--text-color) 6px, transparent 6px);
+
+  width: 100%;
+  height: 300%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  animation: bubbles 5s linear infinite both;
+}
+
+@keyframes bubbles {
+  from {
+    transform: translate();
+  }
+  to {
+    transform: translate(0, -66.666%);
+  }
+}
+
+
+
+</style> 
+	
+</head>
+<body>
+
+
+<div class="container"> <!-- Begin Container -->
+
+	<div class="row"> <!-- Begin Row 1 -->
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"> <!-- Begin Column 1A -->
+			
+			<div align="center" style="color: #ffff;">
+					<h1><strong style="color: #3396ff; font-family: 'Aladin', cursive;">CYBERSMART</strong> TRIVIA</h1>
+			</div>
+			
+		</div> <!-- End Column 1A -->
+	</div> <!-- End Row 1 -->
+
+<div align="center">
+	<nav>
+		<a href="./index.html">Home</a> |
+		<a href="./trivia.html">Trivia</a> |
+		<a href="./passwordGenerator.html">Password Generator</a> |
+		<a href="./checklist.html">Risk Assesment</a> 
+
+</nav>
+</div>
+
+	
+
+
+
+
+
+	<div class="row" id="gameRow"> <!-- Begin Row 2 -->
+		<div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3 col-lg-6 col-md-offset-3" id="startCol"> <!-- Begin Column 2A -->
+			<div id="startDiv">
+				<div id="start">
+					
+
+					<br>
+
+					<button id="startBtn">START THE GAME</button>
+				</div>
+			</div>
+		</div> <!-- End Column 2A -->
+	</div> <!-- End Row 2 -->
+
+	<div class="row" id="gameRow"> <!-- Begin Row 3 -->
+		<div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3 col-lg-6 col-md-offset-3" id="gameCol"> <!-- Begin Column 3A -->
+
+			<!-- WHEN EACH QUESTION IS DISPLAYED -->
+			<div id="currentQuestion"></div>
+			<div id="timeLeft"></div>
+			<div class="question"></div>
+			<div class="answerList"></div>
+
+			<!-- WHEN EACH ANSWER IS DISPLAYED -->
+			<div id="message"></div>
+			<div id="correctedAnswer"></div>
+			<div id="gif"></div>
+			<div id="gifCaption"></div>
+
+			<!-- WHEN RESULTS ARE DISPLAYED -->
+			<div id="finalMessage"></div>
+			<div id="correctAnswers"></div>
+			<div id="incorrectAnswers"></div>
+			<div id="unanswered"></div>
+			<div id="startOverBtn"></div>
+
+		</div> <!-- End Column 3A -->
+
+	</div> <!-- End Row 3 -->
+
+</div> <!-- End Container -->
+
+<!-- Linking jQuery CDN -->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+<!-- Linking my own JAVASCRIPT -->
+<script type="text/javascript" src="assets/javascript/app.js"></script>
+
+</body>
+</html>
